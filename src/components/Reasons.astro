@@ -1,0 +1,131 @@
+---
+const reasons = [
+  { title: "Excellence in Dental Care", desc: "Setting the gold standard for clinical precision and patient outcomes in India." },
+  { title: "Excellence in Cosmetic Dentistry", desc: "Led by specialists who transform smiles into natural, lifelike works of art." },
+  { title: "Experienced Staff", desc: "Our superspecialists have thousands of successful cases and years of global expertise." },
+  { title: "Caring & Comfortable Surroundings", desc: "Designed to eliminate dental anxiety with 5-star amenities in every room." },
+  { title: "5 Star Experience", desc: "From concierge service to personalized post-op care, luxury is our standard." },
+  { title: "In-depth Consultations", desc: "We spend time explaining every detail so you can choose your treatment confidently." },
+  { title: "Ethical Dental Care", desc: "Transparent pricing and purely need-based clinical recommendations." },
+  { title: "Guaranteed Treatment", desc: "We stand behind our work with clinical guarantees on major restorations." },
+  { title: "Convenience", desc: "Located in the heart of Palayapalayam with flexible appointment slots." },
+  { title: "Flexible Payment Options", desc: "Easily accessible premium care with 0% Finance and flexible EMI plans." }
+];
+---
+
+<section id="reasons" class="reasons section--light">
+  <div class="reasons__inner">
+    <div class="reasons__header">
+      <span class="section__label">Why Choose DentiQ?</span>
+      <h2 class="reasons__heading">10 Reasons to trust your <em>Smile</em> with us</h2>
+    </div>
+
+    <div class="reasons__grid">
+      {reasons.map((item, i) => (
+        <div class="reason-card" data-reason={i + 1}>
+          <div class="reason-card__num">{String(i + 1).padStart(2, '0')}</div>
+          <div class="reason-card__content">
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reasons {
+    background: var(--clr-off-white);
+    padding: var(--space-32) var(--gutter);
+  }
+  .reasons__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  .reasons__header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .reasons__heading {
+    font-size: var(--text-3xl);
+    color: var(--clr-navy);
+    line-height: 1.2;
+  }
+  .reasons__heading em {
+    color: var(--clr-gold);
+    font-style: italic;
+  }
+
+  .reasons__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .reason-card {
+    display: flex;
+    gap: var(--space-5);
+    padding: var(--space-6);
+    background: var(--clr-white);
+    border: 1px solid var(--clr-light-gray);
+    border-radius: var(--radius-lg);
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+  }
+  .reason-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--clr-gold);
+  }
+
+  .reason-card__num {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--clr-gold-pale);
+    line-height: 1;
+    transition: color 0.3s ease;
+  }
+  .reason-card:hover .reason-card__num {
+    color: var(--clr-gold);
+  }
+
+  .reason-card__content h3 {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--clr-navy);
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .reason-card__content p {
+    font-size: var(--text-xs);
+    color: var(--clr-text-mid);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .reasons__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.reason-card', {
+    scrollTrigger: {
+      trigger: '.reasons__grid',
+      start: 'top 85%'
+    },
+    y: 30,
+    opacity: 0,
+    stagger: 0.08,
+    duration: 0.8,
+    ease: 'power3.out'
+  });
+</script>

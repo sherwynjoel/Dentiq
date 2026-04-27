@@ -1,0 +1,191 @@
+---
+// Note: In a real production app, these would be local assets or CMS paths.
+const transformations = [
+  { 
+    title: "Full Smile Makeover", 
+    tag: "Porcelain Veneers", 
+    image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=1200",
+    desc: "Achieved perfectly straight, natural-looking white teeth in just 2 visits."
+  },
+  { 
+    title: "Invisible Alignment", 
+    tag: "Invisalign", 
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
+    desc: "Fixed severe crowding and bite alignment without unsightly metal braces."
+  },
+  { 
+    title: "Implant Restoration", 
+    tag: "Dental Implants", 
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
+    desc: "Restored full functionality and appearance after multiple tooth loss."
+  },
+  { 
+    title: "5-Star Clinic Environment", 
+    tag: "Practice Gallery", 
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200",
+    desc: "Experience world-class hospitality and technology in the heart of Erode."
+  }
+];
+---
+
+<section id="gallery" class="gallery section--light">
+  <div class="gallery__inner">
+    <div class="gallery__header">
+      <span class="section__label">Smile Album</span>
+      <h2 class="gallery__heading">Our Practice <em>Gallery</em></h2>
+      <p class="gallery__sub">Witness the life-changing results our superspecialists achieve every single day.</p>
+    </div>
+
+    <div class="gallery__grid">
+      {transformations.map((item, i) => (
+        <div class="gallery-item" data-index={i}>
+          <div class="gallery-item__img-box">
+            <img src={item.image} alt={item.title} loading="lazy" />
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__tag">{item.tag}</span>
+            </div>
+          </div>
+          <div class="gallery-item__content">
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="gallery__cta">
+      <a href="/treatments" class="btn btn--outline" data-cursor-hover>Explore All Results</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery {
+    background: var(--clr-white);
+    padding: var(--space-32) var(--gutter);
+  }
+  .gallery__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  .gallery__header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .gallery__heading {
+    font-size: var(--text-3xl);
+    color: var(--clr-navy);
+    line-height: 1.2;
+    margin-bottom: var(--space-4);
+  }
+  .gallery__heading em {
+    color: var(--clr-gold);
+    font-style: italic;
+  }
+  .gallery__sub {
+    font-size: var(--text-base);
+    color: var(--clr-text-mid);
+    font-weight: 300;
+  }
+
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .gallery-item {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--clr-off-white);
+    border: 1px solid var(--clr-light-gray);
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .gallery-item:hover {
+    transform: scale(1.02);
+  }
+
+  .gallery-item__img-box {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .gallery-item__img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+  .gallery-item:hover .gallery-item__img-box img {
+    transform: scale(1.1);
+  }
+
+  .gallery-item__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(78, 72, 50, 0.4), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-6);
+  }
+  .gallery-item__tag {
+    background: var(--clr-gold);
+    color: var(--clr-white);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .gallery-item__content {
+    padding: var(--space-8);
+    text-align: center;
+  }
+  .gallery-item__content h3 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--clr-navy);
+    margin-bottom: 8px;
+  }
+  .gallery-item__content p {
+    font-size: var(--text-xs);
+    color: var(--clr-text-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .gallery__cta {
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .gallery__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.gallery-item', {
+    scrollTrigger: {
+      trigger: '.gallery__grid',
+      start: 'top 85%'
+    },
+    y: 40,
+    opacity: 0,
+    stagger: 0.15,
+    duration: 1,
+    ease: 'power3.out'
+  });
+</script>

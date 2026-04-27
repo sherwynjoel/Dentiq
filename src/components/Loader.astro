@@ -5,13 +5,14 @@
   <div class="loader__curtain loader__curtain--top"></div>
   <div class="loader__curtain loader__curtain--bottom"></div>
   <div class="loader__content">
-    <div class="loader__line-wrap">
-      <span class="loader__name">Dr. Dilip</span>
+    <div class="loader__logo">
+      <span class="loader__logo-main">DentiQ</span>
+      <span class="loader__logo-sub">Laser Dental Hospital</span>
     </div>
-    <div class="loader__line-wrap">
-      <span class="loader__name loader__name--italic">Dental Centre</span>
+    <span class="loader__tagline">Erode Hospital — Superspeciality Care</span>
+    <div class="loader__bar-wrap">
+      <div class="loader__bar-fill"></div>
     </div>
-    <span class="loader__tagline">Best Orofacial Pain Treatment in India</span>
   </div>
 </div>
 
@@ -21,6 +22,7 @@
     inset: 0;
     z-index: 9000;
     pointer-events: all;
+    overflow: hidden;
   }
 
   .loader__curtain {
@@ -28,7 +30,7 @@
     left: 0;
     right: 0;
     height: 50%;
-    background: var(--clr-cream);
+    background: var(--clr-navy);
   }
   .loader__curtain--top    { top: 0; }
   .loader__curtain--bottom { bottom: 0; }
@@ -40,62 +42,63 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0;
+    gap: var(--space-4);
     z-index: 1;
   }
 
-  .loader__line-wrap {
+  .loader__logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow: hidden;
-    line-height: 1.1;
   }
 
-  .loader__name {
+  .loader__logo-main {
     display: block;
-    font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5vw, 5rem);
-    font-weight: 300;
-    color: var(--clr-olive);
-    letter-spacing: 0.06em;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 600;
+    color: var(--clr-white);
+    letter-spacing: 0.02em;
     transform: translateY(105%);
+    line-height: 1.1;
   }
-  .loader__name--italic {
+  .loader__logo-sub {
+    display: block;
+    font-family: var(--font-body);
+    font-size: clamp(0.75rem, 1.8vw, 1rem);
     font-weight: 400;
-    font-style: italic;
-    color: var(--clr-sage);
+    color: var(--clr-gold);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    transform: translateY(105%);
+    margin-top: var(--space-2);
   }
 
   .loader__tagline {
     font-family: var(--font-body);
     font-size: var(--text-xs);
     font-weight: 300;
-    color: var(--clr-sage);
-    letter-spacing: 0.28em;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    margin-top: var(--space-6);
     opacity: 0;
+    margin-top: var(--space-2);
   }
 
-  .loader__progress {
-    position: absolute;
-    bottom: var(--space-12);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-  }
-  .loader__bar {
-    width: 80px;
-    height: 1px;
-    background: var(--clr-sand-light);
-    position: relative;
+  .loader__bar-wrap {
+    width: 100px;
+    height: 2px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
     overflow: hidden;
+    margin-top: var(--space-4);
   }
   .loader__bar-fill {
-    position: absolute;
-    inset: 0;
-    background: var(--clr-sage);
-    transform: scaleX(0);
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--clr-gold), var(--clr-gold-light));
+    border-radius: 2px;
     transform-origin: left;
   }
 </style>
@@ -109,41 +112,40 @@
   const tl = gsap.timeline({ delay: 0.1 });
 
   tl
-    .to('.loader__name', {
+    .to(['.loader__logo-main', '.loader__logo-sub'], {
       y: 0,
-      duration: 1.1,
-      stagger: 0.12,
+      duration: 1.0,
+      stagger: 0.1,
       ease: 'power4.out',
     })
-    .to('.loader__tagline', {
-      opacity: 1,
-      duration: 0.8,
-      ease: 'power2.out',
-    }, '-=0.5')
-    // hold
-    .to({}, { duration: 0.9 })
-    // fade out content
-    .to('.loader__content', {
-      opacity: 0,
-      duration: 0.35,
-      ease: 'power2.in',
-    })
-    // curtain split
+    .to('.loader__tagline', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+    .to('.loader__bar-fill', { width: '100%', duration: 0.9, ease: 'power2.inOut' }, '-=0.3')
+    .to({}, { duration: 0.5 })
+    .to('.loader__content', { opacity: 0, duration: 0.3, ease: 'power2.in' })
     .to('.loader__curtain--top', {
       yPercent: -100,
-      duration: 1.05,
+      duration: 1.0,
       ease: 'power4.inOut',
     }, '-=0.05')
     .to('.loader__curtain--bottom', {
       yPercent: 100,
-      duration: 1.05,
+      duration: 1.0,
       ease: 'power4.inOut',
     }, '<')
     .call(() => {
-      const loader = document.getElementById('loader')!;
+      removeLoader();
+    });
+
+  function removeLoader() {
+    const loader = document.getElementById('loader');
+    if (loader && loader.style.display !== 'none') {
       loader.style.display = 'none';
       document.body.classList.remove('is-loading');
       ScrollTrigger.refresh();
       window.dispatchEvent(new CustomEvent('loader:complete'));
-    });
+    }
+  }
+
+  // Safety timeout
+  setTimeout(removeLoader, 3500);
 </script>

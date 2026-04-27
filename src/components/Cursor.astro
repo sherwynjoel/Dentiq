@@ -18,7 +18,7 @@
   .cursor__dot {
     width: 6px;
     height: 6px;
-    background: var(--clr-sage);
+    background: var(--clr-gold);
     border-radius: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
@@ -32,7 +32,7 @@
   .cursor__ring {
     width: 38px;
     height: 38px;
-    border: 1.5px solid var(--clr-sage);
+    border: 1.5px solid var(--clr-gold);
     border-radius: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
@@ -41,26 +41,26 @@
       height 0.35s var(--ease-out-expo),
       border-color 0.25s ease,
       opacity 0.3s ease;
-    opacity: 0.55;
+    opacity: 0.5;
   }
 
   #cursor.is-hovering .cursor__dot {
     width: 10px;
     height: 10px;
-    background: var(--clr-olive);
+    background: var(--clr-gold-light);
   }
   #cursor.is-hovering .cursor__ring {
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
     opacity: 1;
-    border-color: var(--clr-olive);
+    border-color: var(--clr-gold-light);
   }
 
-  #cursor.is-link .cursor__dot { background: var(--clr-sage-dark); }
+  #cursor.is-link .cursor__dot { background: var(--clr-navy); }
   #cursor.is-link .cursor__ring {
     width: 50px;
     height: 50px;
-    border-color: var(--clr-sage);
+    border-color: var(--clr-navy);
     opacity: 0.8;
   }
 

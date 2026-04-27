@@ -1,0 +1,450 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+
+const treatmentCategories = [
+  { id: 'cosmetic', name: 'Cosmetic Dentistry', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>` },
+  { id: 'implants', name: 'Implant Dentistry', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="6" height="10" rx="2"/><path d="M12 12v10M8 22h8"/></svg>` },
+  { id: 'endodontics', name: 'Endodontics', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 4 5.5 4 9c0 2.5 1.5 4.5 3 6l1 5h8l1-5c1.5-1.5 3-3.5 3-6 0-3.5-4-7-8-7z"/></svg>` },
+  { id: 'periodontics', name: 'Periodontics', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>` },
+  { id: 'orthodontics', name: 'Orthodontics', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18M3 15h18"/></svg>` },
+  { id: 'pedodontics', name: 'Pedodontics', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>` },
+  { id: 'tmj', name: 'TMJ & Sleep', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>` },
+  { id: 'prosthodontics', name: 'Prosthodontics', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>` },
+  { id: 'gerodontics', name: 'Gerodontics', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zM12 22s8-4 8-10H4c0 6 8 10 8 10z"/></svg>` },
+  { id: 'sports', name: 'Sports Dentistry', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M6.7 6.7l10.6 10.6M6.7 17.3l10.6-10.6"/></svg>` },
+  { id: 'maxillofacial', name: 'Maxillofacial', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>` },
+  { id: 'conservative', name: 'Conservative', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/></svg>` },
+  { id: 'surgery', name: 'Cosmetic Surgery', icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>` }
+];
+---
+
+<BaseLayout title="Treatments & Specialities | DentiQ Erode" description="Explore our 15+ dental superspecialities at DentiQ Erode. From Smile Design and Implants to TMJ specialists and Pediatric care.">
+  <Cursor />
+  <Nav />
+
+  <section class="treatments-hero">
+    <div class="container">
+      <span class="section__label section__label--light">Comprehensive Superspeciality Care</span>
+      <h1 class="hero__heading">Our <em>Specialities</em></h1>
+      <p class="hero__sub">Advanced dental treatments powered by Erode's expert superspecialist team.</p>
+    </div>
+  </section>
+
+  <div class="treatments-container container">
+    <!-- Sticky Nav -->
+    <aside class="treatments-nav">
+      <nav>
+        <ul>
+          {treatmentCategories.map(cat => (
+            <li>
+              <a href={`#${cat.id}`} class="t-nav-link">
+                <span class="t-nav-icon" set:html={cat.icon}></span>
+                <span class="t-nav-text">{cat.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="treatments-main">
+      
+      <!-- Cosmetic Dentistry -->
+      <section id="cosmetic" class="t-section">
+        <h2 class="t-title">Cosmetic <em>Dentistry</em></h2>
+        <div class="t-catchy">Transforming lives through picture-perfect smile aesthetics.</div>
+        <p>Smile Design involves multiple treatment modalities through which we completely transform your smile. We are the only facility in Erode offering premium quality, no-prep veneers.</p>
+        
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Smile Designing/Smile Correction</li>
+             <li>Space Correction (Laminate Veneers)</li>
+             <li>Dental Bleaching / Tooth Whitening</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Tooth Size/Shape Modification</li>
+             <li>Gummy Smile Correction</li>
+             <li>Face-matching Tooth Jewel Placement</li>
+          </ul>
+        </div>
+
+        <div class="t-sub-grid">
+          <div class="t-card">
+             <h3>Lead: Dr. Bala</h3>
+             <p>Our lead cosmetic dentist has completed thousands of cases, giving patients natural results that improve both aesthetics and function.</p>
+          </div>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Consult: +91 84894 88999</a>
+      </section>
+
+      <!-- Implant Dentistry -->
+      <section id="implants" class="t-section">
+        <h2 class="t-title">Dental <em>Implants</em></h2>
+        <div class="t-catchy">Permanent tooth replacement with digital clinical precision.</div>
+        <p>Dental implants are artificial tooth roots used as a permanent replacement. We specialize in complex cases, including patients with significant bone loss.</p>
+        
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Single & Multiple Tooth replacements</li>
+             <li>Full arch implant supported Bridges</li>
+             <li>Removable implant Overdentures</li>
+             <li>Sinus Lift Surgeries</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Basal Implants (No-bone solutions)</li>
+             <li>Zygomatic implants</li>
+             <li>Implant supported Facial Prosthesis</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Implant Consultation: +91 84894 88999</a>
+      </section>
+
+       <!-- Oral & Maxillofacial Surgery -->
+       <section id="maxillofacial" class="t-section">
+        <h2 class="t-title">Oral & <em>Maxillofacial Surgery</em></h2>
+        <p>Comprehensive surgical management for trauma, pathology, and aesthetics.</p>
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Exodontia & Impacted Wisdom Tooth</li>
+             <li>Cleft Lip/Palate Surgery</li>
+             <li>Facial Trauma (Fracture management)</li>
+             <li>Maxilla/Mandible/Orbital/Nasal Fractures</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Temporo Mandibular Joint Surgery</li>
+             <li>Benign Tumor Surgery</li>
+             <li>Salivary Gland & Sialolithiasis</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Specialist Surgery: +91 84894 88999</a>
+      </section>
+
+      <!-- Conservative & Endodontics -->
+      <section id="endodontics" class="t-section">
+        <h2 class="t-title">Conservative <em>& Endodontics</em></h2>
+        <div class="t-catchy">Save your natural teeth with painless, precision technology.</div>
+        
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Caries/Cavity Management</li>
+             <li>Tooth Colored & Composite fillings</li>
+             <li>Minimally Invasive Dentistry</li>
+             <li>Root Canal Treatment (Single Sitting)</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Advanced WaveOne Rotary Endo</li>
+             <li>Apex Locator & 3D Thermoplastic System</li>
+             <li>Plasma Arc Bleaching</li>
+             <li>Composite Veneers</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Emergency RCT: +91 84894 88999</a>
+      </section>
+
+      <!-- Periodontics -->
+      <section id="periodontics" class="t-section">
+        <h2 class="t-title">Periodontics <em>(Gum Health)</em></h2>
+        <p>Comprehensive management of gum disease, from standard scaling to advanced regenerative surgery.</p>
+        
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Scaling / Root planning (Cleaning)</li>
+             <li>Flap surgery & Frenectomy</li>
+             <li>Gingival / Bone Grafting</li>
+             <li>Splinting of Mobile tooth</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Gum Bleeding treatment</li>
+             <li>Gum Enlargement Treatment</li>
+             <li>TFO Management</li>
+             <li>Gingivectomy (Laser)</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Gum Care: +91 84894 88999</a>
+      </section>
+
+      <!-- Orthodontics -->
+      <section id="orthodontics" class="t-section">
+        <h2 class="t-title">Orthodontics <em>& Dentofacial Orthopedics</em></h2>
+        <div class="t-catchy">Invisible Orthodontics & Facial Esthetics Speciality.</div>
+        <p>Correcting malpositioned teeth and jaws through advanced fixed and removable appliances.</p>
+        
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Invisible Orthodontics (INVISALIGN)</li>
+             <li>Lingual Orthodontics (Hidden Braces)</li>
+             <li>Clear Ceramic Braces</li>
+             <li>Fixed & Removable Appliances</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Habit Breaking (Thumb/Lip/Nail Biting)</li>
+             <li>Cleft Lip/Palate management</li>
+             <li>Dentofacial Deformity correction</li>
+             <li>Orthognathic surgical correction</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Aligner Consultation: +91 84894 88999</a>
+      </section>
+
+      <!-- Laser Dentistry -->
+      <section id="laser" class="t-section">
+        <h2 class="t-title">BIOLASE <em>iLASE LASER</em></h2>
+        <div class="t-catchy">Greater comfort, no bleeding, faster healing, safe results.</div>
+        <p>World-leader technology for precisely interacting with areas to be treated in a low-dose and safe manner.</p>
+        
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Gingivectomy (Contouring)</li>
+             <li>Laser activated tooth whitening</li>
+             <li>Hyperpigmentation Removal</li>
+             <li>Implant uncovering</li>
+             <li>Root canal disinfection</li>
+             <li>Mouth ulcer & Cold Sore Treatment</li>
+             <li>Tooth Sensitivity Treatment</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Pericoronitis Treatment</li>
+             <li>Regenerative Periodontal Surgery</li>
+             <li>Periimplantitis Treatment</li>
+             <li>Gingival Retraction</li>
+             <li>Crown Lengthening</li>
+             <li>Laser assisted Biopsy</li>
+             <li>Frenectomy</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Laser Consultation: +91 84894 88999</a>
+      </section>
+
+      <!-- Pedodontics -->
+      <section id="pedodontics" class="t-section">
+        <h2 class="t-title">Children <em>Dentistry</em></h2>
+        <div class="t-catchy">Specialized care for our most precious patients with a friendly atmosphere.</div>
+        
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Eruption / Exfoliation management</li>
+             <li>Space Maintainers</li>
+             <li>Painless injection system</li>
+             <li>Fluoride Applications & Pit Sealants</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Speech Pathology Correction</li>
+             <li>Transplantation of teeth</li>
+             <li>Specially abled Child Treatments</li>
+             <li>Play Area & Skilled Management</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Kid's Appointment: +91 84894 88999</a>
+      </section>
+
+      <!-- Prosthodontics & Gerodontics -->
+      <section id="prosthodontics" class="t-section">
+        <h2 class="t-title">Prosthodontics <em>& Gerodontics</em></h2>
+        <div class="t-catchy">Solutions for all missing teeth with Swiss-standard quality.</div>
+        <p>Kind and gentle care for our seniors. We replace missing teeth immediately to avoid damaging neighboring teeth and improve your overall well-being.</p>
+        
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>BPS Dentures (Ivoclar Vivadent, Switzerland)</li>
+             <li>Special & Balanced Complete Dentures</li>
+             <li>Flexible & Precision Attachment Dentures</li>
+             <li>Cast Partial (Titanium / NiCr)</li>
+             <li>CAD CAM Zirconia Crowns (Computer Milled)</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Crowns & Bridges (Perfect Matching)</li>
+             <li>Full Mouth Rehabilitation</li>
+             <li>Bruxism & Teeth Clenching management</li>
+             <li>Worn out teeth & Facial pain management</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Senior Care: +91 84894 88999</a>
+      </section>
+
+       <!-- Sports Dentistry & Maxillofacial Prosthetics -->
+       <section id="sports" class="t-section">
+        <h2 class="t-title">Sports <em>& Maxillofacial Prosthetics</em></h2>
+        <p>Specialized mouthguards and artificial organ replacements (Eyes, Ears, Nose) to restore confidence.</p>
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Mouth Guards (FDI Specs - Skating, Boxing, etc.)</li>
+             <li>Fractured & Avulsed tooth management</li>
+             <li>Orofacial Trauma associated with sports</li>
+             <li>Facial Prosthesis (Eye, Ear, Nose, Hand, Finger)</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Obturators (Upper Jaw Bone replacing)</li>
+             <li>Head & Neck Cancer Post-surgical Replacements</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Specialist Call: +91 84894 88999</a>
+      </section>
+
+      <!-- Cosmetic Surgery -->
+      <section id="surgery" class="t-section">
+        <h2 class="t-title">Cosmetic <em>Surgery</em></h2>
+        <div class="t-catchy">Aesthetic facial reconstruction led by specialists.</div>
+        <div class="t-sub-services">
+          <ul class="t-service-list">
+             <li>Orthognathic surgery (Jaw Correction)</li>
+             <li>Rhinoplasty (Nose Correction surgery)</li>
+          </ul>
+          <ul class="t-service-list">
+             <li>Lip Surgery</li>
+             <li>Genioplasty/Chin prominence correction</li>
+          </ul>
+        </div>
+        <a href="tel:+918489488999" class="t-cta">Surgery Consultation: +91 84894 88999</a>
+      </section>
+
+    </main>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* Hero */
+  .treatments-hero {
+    background: var(--clr-navy);
+    padding: 10rem 0 6rem;
+    text-align: center;
+    color: var(--clr-white);
+  }
+
+  /* Structural */
+  .treatments-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    padding: 6rem var(--gutter);
+    align-items: start;
+  }
+
+  /* Sidebar Nav */
+  .treatments-nav {
+    position: sticky;
+    top: 120px;
+  }
+  .treatments-nav ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .t-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--clr-text-mid);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: var(--clr-off-white);
+  }
+  .t-nav-link:hover, .t-nav-link.active {
+    background: var(--clr-gold);
+    color: var(--clr-white);
+  }
+  .t-nav-icon { font-size: 1.1rem; }
+
+  /* Main Content */
+  .t-section { padding-bottom: 8rem; scroll-margin-top: 120px; }
+  .t-title { font-family: var(--font-heading); font-size: 2.5rem; color: var(--clr-navy); margin-bottom: 1rem; }
+  .t-title em { font-style: italic; color: var(--clr-gold); }
+  .t-catchy { font-family: var(--font-heading); font-size: var(--text-base); line-height: 1.4; color: var(--clr-gold); margin-bottom: 2rem; font-style: italic; border-left: 3px solid var(--clr-gold); padding-left: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .t-section p { font-size: var(--text-sm); line-height: 1.8; color: var(--clr-text-body); margin-bottom: 2rem; font-weight: 300; }
+
+  .t-sub-services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--clr-light-gray);
+  }
+  .t-service-list {
+    list-style: none;
+  }
+  .t-service-list li {
+    font-size: 0.8rem;
+    color: var(--clr-text-mid);
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.5;
+  }
+  .t-service-list li::before {
+    content: 'Ø';
+    position: absolute;
+    left: 0;
+    color: var(--clr-gold);
+    font-weight: 700;
+  }
+
+  .t-sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  .t-card { background: var(--clr-off-white); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--clr-light-gray); }
+  .t-card h3 { font-size: 1rem; margin-bottom: 0.8rem; color: var(--clr-navy); }
+  .t-card p { font-size: 0.85rem !important; margin-bottom: 0 !important; }
+
+  .t-feature-box { background: var(--clr-navy); color: var(--clr-white); padding: 2rem; border-radius: 16px; margin-bottom: 1rem; }
+  .t-feature-box h4 { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1rem; color: var(--clr-gold); }
+  .t-feature-box p { color: rgba(255,255,255,0.7) !important; font-size: 0.95rem !important; margin-bottom: 0 !important; }
+  .box--gold { background: var(--clr-gold); color: var(--clr-white); }
+  .box--gold h4 { color: var(--clr-navy); }
+  .box--gold p { color: rgba(255,255,255,0.9) !important; }
+
+  .t-tech-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .t-tech { border: 1px solid var(--clr-gold); color: var(--clr-gold); padding: 8px 16px; border-radius: 99px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .t-cta { display: inline-block; background: var(--clr-navy); color: var(--clr-white); padding: 14px 28px; border-radius: 99px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: transform 0.3s ease; }
+  .t-cta:hover { transform: translateY(-3px); background: var(--clr-gold); }
+
+  .t-warning-box { background: #fff5f5; border-left: 4px solid #f87171; padding: 2rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem; }
+  .t-warning-box h4 { color: #991b1b; margin-bottom: 1rem; }
+  .t-warning-box ul { list-style: none; }
+  .t-warning-box li { position: relative; padding-left: 1.5rem; margin-bottom: 8px; font-size: 0.9rem; color: #7f1d1d; }
+  .t-warning-box li::before { 
+    content: ''; 
+    position: absolute; 
+    left: 0; 
+    top: 5px;
+    width: 6px;
+    height: 6px;
+    background: #f87171;
+    border-radius: 50%;
+  }
+
+  .t-bullets { list-style: none; margin-bottom: 2rem; }
+  .t-bullets li { margin-bottom: 12px; font-size: 0.95rem; }
+  .t-bullets strong { color: var(--clr-gold); }
+
+  @media (max-width: 1024px) {
+    .treatments-container { grid-template-columns: 1fr; gap: 2rem; }
+    .treatments-nav { display: none; }
+    .t-sub-grid { grid-template-columns: 1fr; }
+    .t-sub-services { grid-template-columns: 1fr; gap: 1rem; }
+    .t-title { font-size: 1.8rem; }
+    .t-catchy { font-size: 0.75rem; }
+  }
+</style>
+
+<script>
+  // Simple intersection observer to highlight active nav link
+  const observerOptions = { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        document.querySelectorAll('.t-nav-link').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.t-section').forEach(section => observer.observe(section));
+</script>

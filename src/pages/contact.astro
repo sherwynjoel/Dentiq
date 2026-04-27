@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+import ContactSection from '../components/Contact.astro';
+import Locations from '../components/Locations.astro';
+---
+
+<BaseLayout title="Contact Us | Dentiq — Book Your Appointment" description="Get in touch with Dentiq Dental Centre. Locate our branches in Chennai and Coimbatore, or book your consultation online today.">
+  <Cursor />
+  <Nav />
+
+  <!-- Contact Hero -->
+  <section class="contact-hero">
+    <div class="contact-hero__bg"></div>
+    <div class="contact-hero__content">
+      <span class="section__label section__label--light">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
+        Direct Contact
+      </span>
+      <h1 class="contact-hero__heading">We're Here for <em>Your Smile</em></h1>
+      <p class="contact-hero__sub">
+        Whether you have a question about a treatment or need to book an urgent consultation, our team is ready to help.
+      </p>
+    </div>
+  </section>
+
+  <!-- Reuse the main Contact form component -->
+  <!-- We can wrap it in a container if needed or just use it as is since it is a full section -->
+  <ContactSection />
+
+  <!-- Locations Section -->
+  <Locations />
+
+  <!-- FAQ Section specifically for appointments -->
+  <section class="contact-faq">
+    <div class="contact-faq__inner">
+      <div class="contact-faq__header">
+        <span class="section__label">Helpful Information</span>
+        <h2 class="contact-faq__heading">Appointment <em>FAQs</em></h2>
+      </div>
+      <div class="contact-faq__grid">
+        <div class="faq-item">
+          <h3>Do I need an appointment?</h3>
+          <p>Yes, we operate strictly by appointment to ensure every patient gets dedicated time. However, emergency dental cases are prioritised.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What should I bring?</h3>
+          <p>Please bring any previous dental X-rays, medical records, and a list of medications you are currently taking.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do you offer virtual consultations?</h3>
+          <p>Yes, we offer video consultations specifically for TMJ and orofacial pain initial screenings for patients living outside Chennai/Coimbatore.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is your cancellation policy?</h3>
+          <p>We request at least 24 hours notice for any cancellations or rescheduling to help us accommodate other patients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* ── Hero ── */
+  .contact-hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--clr-navy) 0%, #5b543c 60%, #6b6445 100%);
+    padding: 10rem var(--gutter) 6rem;
+    overflow: hidden;
+    text-align: center;
+  }
+  .contact-hero__bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+  .contact-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .contact-hero__heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-hero);
+    font-weight: 600;
+    color: var(--clr-white);
+    line-height: 1.1;
+  }
+  .contact-hero__heading em { font-style: italic; color: var(--clr-gold); }
+  .contact-hero__sub {
+    font-size: var(--text-lg);
+    font-weight: 300;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.8;
+    max-width: 56ch;
+  }
+
+  /* ── FAQ ── */
+  .contact-faq {
+    padding: var(--space-32) var(--gutter);
+    background: var(--clr-white);
+  }
+  .contact-faq__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  .contact-faq__header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+  .contact-faq__heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    color: var(--clr-navy);
+  }
+  .contact-faq__heading em { font-style: italic; color: var(--clr-gold); }
+  .contact-faq__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+  }
+  .faq-item h3 {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--clr-navy);
+    margin-bottom: var(--space-3);
+  }
+  .faq-item p {
+    font-size: var(--text-sm);
+    color: var(--clr-text-body);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  @media (max-width: 768px) {
+    .contact-faq__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.contact-hero__content > *', {
+    y: 40, opacity: 0, stagger: 0.12, duration: 1, ease: 'power3.out', delay: 0.2,
+  });
+  gsap.from('.faq-item', {
+    scrollTrigger: { trigger: '.contact-faq__grid', start: 'top 85%' },
+    y: 30, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out'
+  });
+</script>
