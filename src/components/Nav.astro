@@ -7,7 +7,7 @@ const isBlog       = pathname.startsWith('/blog');
 const isContact    = pathname.startsWith('/contact');
 ---
 
-<header id="nav" role="banner">
+<header id="nav" class={isHome ? 'is-home-nav' : ''} role="banner">
   <div class="nav__top-bar">
     <div class="nav__top-inner">
       <span class="nav__top-promo">New Patients — <a href="/contact" class="link-gold">Book Free Consultation</a></span>
@@ -75,6 +75,26 @@ const isContact    = pathname.startsWith('/contact');
     right: 0;
     z-index: 1000;
     transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+  }
+
+  #nav.is-home-nav:not(.is-scrolled) .nav__links a {
+    color: var(--clr-navy);
+  }
+  #nav.is-home-nav:not(.is-scrolled) .nav__links a:not(.nav__cta):hover {
+    color: var(--clr-gold);
+  }
+  #nav.is-home-nav:not(.is-scrolled) .nav__links a.nav__active {
+    color: var(--clr-navy);
+  }
+  #nav.is-home-nav:not(.is-scrolled) .nav__logo {
+    color: var(--clr-navy);
+    text-shadow: none;
+  }
+  #nav.is-home-nav:not(.is-scrolled) .nav__logo span {
+    color: var(--clr-text-mid);
+  }
+  #nav.is-home-nav:not(.is-scrolled) .nav__hamburger span {
+    background: var(--clr-navy);
   }
 
   .nav__inner {

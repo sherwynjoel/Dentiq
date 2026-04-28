@@ -13,39 +13,16 @@
 
     <div class="doctors__grid">
 
-      <article class="doctor-card">
-        <div class="doctor-card__avatar doctor-card__avatar--1">
-          <span class="doctor-card__initials">DD</span>
-          <div class="doctor-card__avatar-ring"></div>
-        </div>
-        <div class="doctor-card__body">
-          <span class="doctor-card__role">Orofacial Pain Specialist &amp; Co-Founder</span>
-          <h3 class="doctor-card__name">Prof. Dr. Dhivya Dilipkumar</h3>
-          <p class="doctor-card__quals">MDS, PhD, F.TMD, F.OfP, FSL, FDSM &nbsp;·&nbsp; 20+ Years Experience</p>
-          <p class="doctor-card__bio">
-            Chief Dental Specialist and India's foremost award-winning TMJ expert. 
-            Recognized as the "Best Orofacial Pain Specialist in India," she leads the way in non-surgical 
-            management through advanced digital diagnostics.
-          </p>
-          <div class="doctor-card__tags">
-            <span>TMJ Expert</span>
-            <span>Migraine</span>
-            <span>Orofacial Pain</span>
-          </div>
-        </div>
-        <a href="#contact" class="doctor-card__cta btn btn--primary" data-cursor-hover>
-          Book Appointment
-        </a>
-      </article>
+
 
       <article class="doctor-card">
-        <div class="doctor-card__avatar doctor-card__avatar--2">
-          <span class="doctor-card__initials">DB</span>
+        <div class="doctor-card__avatar">
+          <img src="/IMG_0095%20modified%20cropped.jpg" alt="Dr. Bala TMJ" class="doctor-card__img" />
           <div class="doctor-card__avatar-ring"></div>
         </div>
         <div class="doctor-card__body">
           <span class="doctor-card__role">Lead Cosmetic Dentist & Maxillofacial Prosthodontist</span>
-          <h3 class="doctor-card__name">Dr. Bala (Balamurugan)</h3>
+          <h3 class="doctor-card__name">Dr. Bala TMJ</h3>
           <p class="doctor-card__quals">MDS &nbsp;·&nbsp; Smile Design Specialist &nbsp;·&nbsp; 15+ Years</p>
           <p class="doctor-card__bio">
             A master of smile aesthetics who has completed thousands of life-changing transformations. 
@@ -62,28 +39,7 @@
         </a>
       </article>
 
-      <article class="doctor-card doctor-card--team">
-        <div class="doctor-card__avatar doctor-card__avatar--1">
-           <span class="doctor-card__initials">SK</span>
-           <div class="doctor-card__avatar-ring"></div>
-        </div>
-        <div class="doctor-card__body">
-          <span class="doctor-card__role">Maxillofacial Surgery Specialist</span>
-          <h3 class="doctor-card__name">Dr. Sathish Kumaran</h3>
-          <p class="doctor-card__bio">
-            A renowned industry expert in Orthognathic (Jaw) and Facial Esthetic surgeries. 
-            His advanced techniques have delivered amazing results in Thousands of complex cases.
-          </p>
-          <div class="doctor-card__tags doctor-card__tags--light">
-            <span>Jaw Surgery</span>
-            <span>Cosmetic Surgery</span>
-            <span>Erode</span>
-          </div>
-        </div>
-        <a href="#contact" class="doctor-card__cta btn btn--light" data-cursor-hover>
-          Meet the team
-        </a>
-      </article>
+
 
     </div>
   </div>
@@ -130,8 +86,10 @@
 
   .doctors__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: var(--space-6);
+    max-width: 420px;
+    margin: 0 auto;
   }
 
   /* Card base */
@@ -159,24 +117,34 @@
   /* Avatar */
   .doctor-card__avatar {
     position: relative;
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    margin-bottom: var(--space-4);
+  }
+  .doctor-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: var(--shadow-md);
   }
   .doctor-card__avatar--1 {
     background: linear-gradient(135deg, var(--clr-navy) 0%, var(--clr-navy-light) 100%);
+    border-radius: 24px;
   }
   .doctor-card__avatar--2 {
     background: linear-gradient(135deg, #1a4a2a 0%, #2d8050 100%);
+    border-radius: 24px;
   }
   .doctor-card__avatar-ring {
     position: absolute;
     inset: -5px;
-    border-radius: 50%;
+    border-radius: 28px;
     border: 2px solid var(--clr-gold);
     opacity: 0.5;
     transition: opacity 0.3s ease, inset 0.3s ease;

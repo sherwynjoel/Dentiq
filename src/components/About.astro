@@ -7,13 +7,7 @@
     <!-- Left: Info cards column -->
     <div class="about__left">
       <div class="about__img-wrap">
-        <div class="about__img-placeholder">
-          <div class="about__img-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2C8 2 4 5.5 4 9c0 2.5 1.5 4.5 3 6l1 5h8l1-5c1.5-1.5 3-3.5 3-6 0-3.5-4-7-8-7z"/><path d="M9 9h6M12 6v6"/></svg>
-          </div>
-          <p>DentiQ</p>
-          <span>Palayapalayam, Erode</span>
-        </div>
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800" alt="DentiQ Clinic" class="about__img" />
         <!-- Floating experience badge -->
         <div class="about__exp-badge">
           <span class="about__exp-num">20+</span>
@@ -46,9 +40,9 @@
       </h2>
       <div class="divider"></div>
       <p class="about__body">
-        DentiQ is Erode's premier Superspeciality Laser Dental Hospital, 
-        pioneering comprehensive dentistry and 5-star patient comfort with 
-        a dedicated team of superspecialists.
+        DentiQ is Erode's trusted local Laser Dental Clinic, 
+        pioneering comfortable dentistry and welcoming care with 
+        a dedicated team of specialists.
       </p>
       <p class="about__body">
         Led by <strong>Prof. Dr. Dhivya Dilipkumar MDS PhD</strong> and
@@ -112,17 +106,12 @@
     overflow: visible;
   }
 
-  .about__img-placeholder {
-    background: linear-gradient(135deg, var(--clr-navy) 0%, var(--clr-navy-mid) 100%);
+  .about__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: var(--radius-xl);
-    padding: var(--space-20) var(--space-10);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: var(--space-4);
-    min-height: 320px;
+    min-height: 360px;
     box-shadow: var(--shadow-lg);
   }
   .about__img-icon {

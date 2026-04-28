@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Cursor from '../../components/Cursor.astro';
+import { treatmentsData } from '../../data/treatmentsData.js';
+
+export async function getStaticPaths() {
+  return treatmentsData.map((treatment) => ({
+    params: { id: treatment.id },
+    props: { treatment },
+  }));
+}
+
+const { treatment } = Astro.props;
+---
+
+<BaseLayout title={`${treatment.name} | DentiQ Erode`} description={treatment.desc}>
+  <Cursor />
+  <Nav />
+
+  <section class="treatment-hero">
+    <div class="container">
+      <span class="section__label section__label--light">Speciality Treatment</span>
+      <h1 class="t-title">{treatment.name}</h1>
+      {treatment.catchy && <div class="t-catchy">{treatment.catchy}</div>}
+      <p class="t-desc">{treatment.desc}</p>
+    </div>
+  </section>
+
+  <section class="treatment-content">
+    <div class="container">
+      <div class="t-details-grid">
+        <div class="t-services-box">
+          <h3>Services Offered</h3>
+          <ul class="t-service-list">
+            {treatment.services.map((service) => (
+              <li>{service}</li>
+            ))}
+          </ul>
+        </div>
+
+        {treatment.lead && (
+          <div class="t-lead-card">
+            <h3>{treatment.lead}</h3>
+            <p>{treatment.leadDesc}</p>
+          </div>
+        )}
+      </div>
+
+      <div class="t-cta-wrapper">
+        <a href="tel:+918489488999" class="t-cta">{treatment.cta}</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter); }
+
+  .treatment-hero {
+    background: var(--clr-navy);
+    padding: 10rem 0 6rem;
+    text-align: center;
+    color: var(--clr-white);
+  }
+  .t-title { font-family: var(--font-heading); font-size: 3rem; color: var(--clr-white); margin-bottom: 1.5rem; }
+  .t-catchy { font-family: var(--font-heading); font-size: var(--text-lg); color: var(--clr-gold); margin-bottom: 2rem; font-style: italic; }
+  .t-desc { font-size: var(--text-base); line-height: 1.8; color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto; font-weight: 300; }
+
+  .treatment-content {
+    padding: 6rem 0;
+    background: var(--clr-white);
+  }
+
+  .t-details-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .t-details-grid { grid-template-columns: 1fr; }
+  }
+
+  .t-services-box h3 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--clr-navy); margin-bottom: 2rem; }
+  .t-service-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 600px) {
+    .t-service-list { grid-template-columns: 1fr; }
+  }
+
+  .t-service-list li {
+    font-size: var(--text-sm);
+    color: var(--clr-text-body);
+    position: relative;
+    padding-left: 24px;
+    line-height: 1.6;
+  }
+  .t-service-list li::before {
+    content: 'Ø';
+    position: absolute;
+    left: 0;
+    color: var(--clr-gold);
+    font-weight: 700;
+  }
+
+  .t-lead-card {
+    background: var(--clr-off-white);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--clr-light-gray);
+  }
+  .t-lead-card h3 { font-family: var(--font-heading); font-size: 1.4rem; color: var(--clr-navy); margin-bottom: 1rem; }
+  .t-lead-card p { font-size: 0.95rem; line-height: 1.7; color: var(--clr-text-body); font-weight: 300; }
+
+  .t-cta-wrapper {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .t-cta {
+    display: inline-block;
+    background: var(--clr-navy);
+    color: var(--clr-white);
+    padding: 16px 40px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: var(--shadow-md);
+  }
+  .t-cta:hover {
+    transform: translateY(-3px);
+    background: var(--clr-gold);
+  }
+</style>

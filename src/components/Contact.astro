@@ -389,17 +389,5 @@
     }, 3500);
   });
 
-  // Magnetic buttons
-  document.querySelectorAll('[data-magnetic]').forEach((el) => {
-    const elem = el as HTMLElement;
-    elem.addEventListener('mousemove', (e) => {
-      const rect = elem.getBoundingClientRect();
-      const dx = (e.clientX - (rect.left + rect.width  / 2)) * 0.25;
-      const dy = (e.clientY - (rect.top  + rect.height / 2)) * 0.25;
-      gsap.to(elem, { x: dx, y: dy, duration: 0.4, ease: 'power2.out' });
-    });
-    elem.addEventListener('mouseleave', () => {
-      gsap.to(elem, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)' });
-    });
-  });
+
 </script>
