@@ -4,6 +4,7 @@
 <section id="doctors" class="section doctors">
   <div class="doctors__inner">
     <div class="doctors__header">
+      <span class="doctors__super-label">Super speciality Experts</span>
       <span class="section__label">The Specialists</span>
       <h2 class="doctors__heading">Our <em>Specialists</em> for every dental need</h2>
       <p class="doctors__sub">
@@ -54,6 +55,17 @@
   .doctors__inner {
     max-width: var(--max-width);
     margin: 0 auto;
+  }
+
+  .doctors__super-label {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--clr-gold-dark);
+    margin-bottom: var(--space-4);
+    opacity: 0.9;
   }
 
   .doctors__header {
