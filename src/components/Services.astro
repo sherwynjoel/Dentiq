@@ -155,9 +155,10 @@ const services = [
   }
 
   .service-card__split-container {
-    height: 220px;
+    height: 320px;
     position: relative;
     display: flex;
+    flex-direction: column;
     background: var(--clr-off-white);
   }
 
@@ -168,11 +169,11 @@ const services = [
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
   }
 
   .service-card__after {
-    border-right: none;
+    border-bottom: none;
     background: rgba(206, 196, 167, 0.1);
   }
 
